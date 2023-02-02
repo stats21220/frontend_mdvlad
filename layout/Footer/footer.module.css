@@ -1,103 +1,104 @@
 
 .footer {
-	background: var(--white);
-	color: black;
+	background: #ebeced;
 	display: grid;
-	justify-content: center;
-	grid-template-columns: auto auto auto auto;
+	grid-template-columns: auto 240px 250px 300px auto auto;
 	grid-template-areas: 
-		"list_1 list_2 list_3 map"
-		"footer_bottom footer_bottom footer_bottom map";
+		". about_company catalog contacts map ."
+		". footer_bottom footer_bottom footer_bottom map ."
+	;
 }
-
-.list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	padding-left: 10px;
-	padding-top: 15px;
-	padding-bottom: 20px;
-}
-
-.listItem {
-	padding-left: 10px;
-	padding-right: 10px;
-	font-size: 15px;
-	line-height: 25px;
-}
-
-.listItem:hover {
-	background: var(--primary);
-	color: var(--white);
-	fill: var(--white);
-}
-
 
 .title {
-	padding-left: 20px;
+	margin-top: 25px;
+	margin-bottom: 15px;
 }
 
-.list_1 {
-	padding-top: 30px;
-	grid-area: list_1;
+.list  {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-.list_2 {
-	padding-top: 30px;
-	grid-area: list_2;
+.listItem  {
+	line-height: 30px;
 }
 
-.list_3 {
-	padding-top: 30px;
-	grid-area: list_3;
+
+
+.about_company {
+	grid-area: about_company;
+	padding: 0 20px;
+}
+
+.catalog {
+	grid-area: catalog;
+	padding: 0 20px;
+}
+
+.sale {
+	color: var(--primary);
+	font-weight: 700;
+}
+
+.contacts {
+	grid-area: contacts;
+	padding: 0 10px;
+}
+
+.phone {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.time {
+	line-height: 20px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.mail {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.address {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
 }
 
 .map {
-	width: 600px;
 	grid-area: map;
+	margin-bottom: 15px;
 }
 
 .footer_bottom {
+	margin-top: 20px;
 	grid-area: footer_bottom;
-	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	gap: 5px;
+	padding: 0 20px;
 }
 
-.footer_bottom_link {
-	font-size: 13px;
-	padding-right: 15px;
+.line {
+	height: 1px;
+	background-color: var(--primary);
 }
 
 .footer_bottom_element {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-right: 20px;
 }
 
-.phone {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.time {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.mail {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.address {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.filled {
-	fill: var(--primary);
+.footer_bottom_link {
+	font-size: 11px;
+	margin-right: 10px;
 }

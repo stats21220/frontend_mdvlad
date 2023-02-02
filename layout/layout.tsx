@@ -3,15 +3,18 @@ import { Header } from "./Header/header";
 import { Footer } from "./Footer/footer";
 import { Subscribe } from "./Subscribe/Subscribe";
 import { FunctionComponent } from "react";
+import styles from "./layout.module.css";
 
-const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
+  console.log("hi");
   return (
-    <>
-      <Header />
-      <div>{children}</div>
-      <Subscribe />
-      <Footer />
-    </>
+    <div className={styles.wrapper}>
+      <Header className={styles.header} />
+      <div className={styles.body}>{children}</div>
+      <Subscribe className={styles.subscribe} />
+      <div className={styles.feedback}>FEEDBACK</div>
+      <Footer className={styles.footer} />
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { IHeaderProps } from "./header.props";
-import styles from "./Header.module.css";
+import styles from "./header.module.css";
 import ILogo from "./logo.svg";
 import Link from "next/link";
 import { Ptag } from "../../components";

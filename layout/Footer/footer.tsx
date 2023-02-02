@@ -1,5 +1,5 @@
 import { IFooterProps } from "./footer.props";
-import styles from "./Footer.module.css";
+import styles from "./footer.module.css";
 import cn from "classnames";
 import { format } from "date-fns";
 import { Card, Htag, Ptag } from "../../components";
@@ -14,7 +14,7 @@ import Link from "next/link";
 export const Footer = ({ className, ...props }: IFooterProps) => {
   return (
     <footer className={cn(styles.footer, className)} {...props}>
-      <div className={cn(styles.list_1)}>
+      <div className={cn(styles.about_company)}>
         <Htag className={styles.title} tag="h2" size="s" color="black">
           О КОМПАНИИ
         </Htag>
@@ -42,7 +42,7 @@ export const Footer = ({ className, ...props }: IFooterProps) => {
           </li>
         </ul>
       </div>
-      <div className={cn(styles.list_2)}>
+      <div className={cn(styles.catalog)}>
         <Htag className={styles.title} tag="h2" size="s" color="black">
           КАТАЛОГ
         </Htag>
@@ -75,7 +75,7 @@ export const Footer = ({ className, ...props }: IFooterProps) => {
           </li>
         </ul>
       </div>
-      <div className={cn(styles.list_3)}>
+      <div className={cn(styles.contacts)}>
         <Htag className={styles.title} tag="h2" size="s" color="black">
           КОНТАКТЫ
         </Htag>
@@ -133,6 +133,7 @@ export const Footer = ({ className, ...props }: IFooterProps) => {
             </Link>
           </div>
         </div>
+        <div className={cn(styles.line, styles.footer_bottom_element)}></div>
         <div className={styles.footer_bottom_element}>
           <div>
             <Ptag size="s" color="black">

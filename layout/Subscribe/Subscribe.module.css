@@ -1,44 +1,35 @@
-
 .subscribe {
-  background: var(--primary);
-  cursor: default;
+  display: grid;
+  grid-template-columns: auto;
+  background-color: var(--primary);
+  height: 50px;
 }
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr  auto auto auto 1fr;
-  grid-template-areas: 
-    ". title form descr ."
-  ;
-  justify-content: center;
+  grid-template-columns: minmax(320px, 1200px);
   align-items: center;
-  gap: 30px;
-  height: 55px;
+  margin: auto;
 }
 
+.wrapper_item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
 
-/* временные свойства кроме позиционирования */
 .title {
-  grid-area: title;
-  font-size: 20px;
+  text-align: right;
+  margin-right: 20px;
 }
 
 .form {
-  grid-area: form;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 550px;
-  gap: 10px;
-}
-
-
-.descr {
-  grid-area: descr;
-  white-space: nowrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px;
+  margin-right: 20px;
 }
 
 .input {
-  width: 400px;
-  text-align: center;
+  width: 100%;
 }

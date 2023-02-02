@@ -1,4 +1,4 @@
-
+/* 
 .header {
   display: grid;
   grid-template-columns: auto 1280px auto;
@@ -19,7 +19,7 @@
   font-size: 15px;
   background: var(--orange-light);
   color: var(--black);
-  /* border-bottom: 2px solid var(--primary); */
+
 }
 
 .wrapper_nav {
@@ -60,17 +60,17 @@
 
 .logo {
   width: 180px;
-  /* text-align: left; */
-  /* grid-area: logo; */
+
+
 }
 
 .phone {
-  /* width: 270px; */
+
   display: flex;
   gap: 10px;
   font-size: 17px;
   font-weight: 700;
-  /* grid-area: phone; */
+
 }
 
 
@@ -78,29 +78,20 @@
   display: flex;
   justify-content: end;
   width: 250px;
-  /* grid-area: cart; */
 }
 
 .search {
   display: flex;
   justify-content: center;
   width: 500px;
-  /* grid-area: search; */
 }
 
-/* .wrapper_block_item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  grid-area: wrapper_block_item;
-} */
 
 .block_1 {
   display: flex;
   justify-content: center;
   height: 93px;
   grid-area: block_1;
-  /* background: var(--cream); */
 }
 
 .wrapper_block_item {
@@ -117,11 +108,11 @@
   height: 35px;
   cursor: pointer;
   grid-area: block_2;
-  /* font-size: 15px; */
+
   background: var(--orange-light);
   color: var(--black);
-  /* border-top: 2px solid var(--primary);
-  border-bottom: 2px solid var(--primary); */
+
+
 }
 
 .wrapper_menu {
@@ -134,7 +125,6 @@
   grid-area: wrapper_nav;
   justify-content: space-between;
   background: var(--primary);
-  /* border-radius: 30px; */
 }
 
 .wrapper_user_item {
@@ -147,31 +137,25 @@
 .menu_1 {
   margin-left: 30px;
   grid-area: menu_1;
-  /* width: 20%; */
-  /* text-align: center; */
   text-transform: uppercase;
 }
 .menu_2 {
   grid-area: menu_2;
-  /* width: 20%; */
   text-align: center;
 }
 
 .menu_3 {
   grid-area: menu_3;
-  /* width: 20%; */
   text-align: center;
 }
 
 .menu_4 {
   grid-area: menu_4;
-  /* width: 20%; */
-  /* text-align: center; */
 }
 
 .menu_5 {
   grid-area: menu_5;
-  /* width: 20%; */
+
   text-align: center;
 }
 
@@ -184,7 +168,7 @@
   text-transform: uppercase;
   height: 100%;
   align-items: center;
-  /* width: 20%; */
+
   background: var(--orange-light);
   color: var(--black);
   font-weight: 00;
@@ -236,4 +220,4 @@
 
 .dropdown:hover .dropdown_content {
   display: block;
-}
+} */

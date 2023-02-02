@@ -2,9 +2,9 @@ import { Htag, Ptag } from "../../components";
 import IPhone from "./phone.svg";
 import IMail from "./mail.svg";
 import Link from "next/link";
-import styles from "./Vendor.module.css";
+import styles from "./Supply.module.css";
 
-export const Provider = () => {
+export const Supply = () => {
   return (
     <div>
       <Htag className={styles.title} tag="h2" size="m" color="black">

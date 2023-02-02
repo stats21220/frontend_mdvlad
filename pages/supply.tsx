@@ -1,10 +1,10 @@
 import { WithLayout } from "../layout/layout";
-import { Provider } from "../layout/Vendor/Vendor";
+import { Supply } from "../layout/Supply/Supply";
 
 function PageProvider() {
   return (
     <>
-      <Provider />
+      <Supply />
     </>
   );
 }
