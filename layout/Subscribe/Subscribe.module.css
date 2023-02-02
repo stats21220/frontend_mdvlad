@@ -1,0 +1,44 @@
+
+.subscribe {
+  background: var(--primary);
+  cursor: default;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr  auto auto auto 1fr;
+  grid-template-areas: 
+    ". title form descr ."
+  ;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 55px;
+}
+
+
+/* временные свойства кроме позиционирования */
+.title {
+  grid-area: title;
+  font-size: 20px;
+}
+
+.form {
+  grid-area: form;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 550px;
+  gap: 10px;
+}
+
+
+.descr {
+  grid-area: descr;
+  white-space: nowrap;
+}
+
+.input {
+  width: 400px;
+  text-align: center;
+}

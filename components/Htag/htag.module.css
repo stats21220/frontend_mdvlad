@@ -1,0 +1,40 @@
+
+.h1 {
+	margin: 0;
+	color: var(--primary);
+	font-size: 52px;
+	font-weight: 500;
+}
+
+.h2 {
+	margin: 0;
+	color: var(--primary);
+	font-weight: 400;
+	font-size: 45px;
+	font-weight: 500;
+}
+
+.h3 {
+	margin: 0;
+	color: var(--primary);
+	font-weight: 500;
+	font-size: 30px;
+}
+
+.s {
+	font-size: 16px;
+}
+
+.m {
+	font-size: 35px;
+}
+
+.white {
+	color: var(--white);
+	font-weight: 700;
+}
+
+.black {
+	color: var(--black);
+	font-weight: 700;
+}

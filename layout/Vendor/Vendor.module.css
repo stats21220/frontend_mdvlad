@@ -1,0 +1,22 @@
+
+.title {
+    margin-top: 30px;
+}
+
+.descr {
+    margin-top: 10px;
+}
+
+.phone {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mail {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

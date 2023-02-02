@@ -1,0 +1,43 @@
+
+.title {
+    margin-top: 30px;
+}
+
+.subTitle {
+    margin-bottom: 5px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.item {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 20px;
+    align-items: center;
+}
+
+.address {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.clock {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.phone {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.messagerItems {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+}
