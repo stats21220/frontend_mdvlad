@@ -14,9 +14,9 @@ export const Nav = ({ className }: NavProps) => {
             <span>О компании</span>
           </Link>
           <div className={cn(styles.dropdown)}>
-            <div className={styles.dropbtn}>
+            <button className={styles.dropbtn}>
               <span>Покупателям</span>
-            </div>
+            </button>
             <div className={styles.dropdown_content}>
               <Link href={"/lawyer"}>
                 <span>Работа с юр.лицами</span>
@@ -35,7 +35,7 @@ export const Nav = ({ className }: NavProps) => {
           <Link href={"/contacts"} className={styles.nav_item}>
             <span>Контакты</span>
           </Link>
-          <Link href={"/"} className={styles.nav_item}>
+          <Link href={"/"} className={cn(styles.promo, styles.nav_item)}>
             <span>Акции</span>
           </Link>
         </nav>
