@@ -1,16 +1,21 @@
 
 .wrapper {
 	display: grid;
-	grid-template-columns: 1fr minmax(320px, 1200px) 1fr;
-	grid-template-rows: auto 1fr auto auto auto;
+	grid-template-columns: 1fr minmax(320px, 1600px) 1fr;
+	grid-template-rows: auto auto 1fr auto auto auto;
 	min-height: 100vh;
 	grid-template-areas: 
-		". header ."
+		"nav nav nav"
+		"header header header"
 		". body ."
 		"feedback feedback feedback"
 		"subscribe subscribe subscribe"
 		"footer footer footer"
 		;
+}
+
+.nav {
+	grid-area: nav;
 }
 
 .header {
@@ -37,6 +42,7 @@
 	.wrapper {
 		grid-template-columns: minmax(320px, 1fr);
 		grid-template-areas:
+				"nav"
 				"header"
 				"body"
 				"feedback"

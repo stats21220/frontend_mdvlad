@@ -33,3 +33,52 @@
 .input {
   width: 100%;
 }
+
+@media(max-width:1200px) {
+
+  .subscribe {
+    height: 70px;
+  }
+
+  .wrapper {
+    padding: 0 30px;
+  }
+  .wrapper_item {
+    grid-template-columns: auto 1fr auto;
+  }
+  .title {
+    font-size: 13px;
+  }
+
+  .form {
+    width: 400px;
+  }
+}
+
+@media(max-width:765px) {
+
+  .subscribe {
+    height: 200px;
+  }
+
+  .wrapper {
+    padding: 0 10px;
+  }
+
+  .wrapper_item {
+    grid-template-columns: auto;
+    gap: 10px;
+    justify-items: center;
+  }
+
+  .title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .form {
+    width: 300px;
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+}

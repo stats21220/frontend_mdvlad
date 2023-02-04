@@ -1,4 +1,4 @@
-import styles from "./PaymentAndDelivery.module.css";
+import styles from "./paymentAndDelivery.module.css";
 import { Card, Htag, Ptag } from "../../components";
 import IMasterCard from "./masterCard.svg";
 import IVisa from "./visa.svg";

@@ -2,7 +2,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-
+	overflow: scroll;
 	color: var(--black);
 
 	background: #F5F6F8;
@@ -22,7 +22,7 @@ a {
 
 :root {
 	--primary: #0075BD;
-	--primary-hover: #0065a4;
+	--primary-hover: #0b679f;
 	--primary-light: #337AB7;
 	--black: #333;
 	--white: #FFF;
@@ -32,7 +32,8 @@ a {
 	--red: #C32727;
 	--cream: #FDE7C1;
 	--orange: #FFAD1C;
-	--orange-hover: #f5a315;
+	--orange-hover: #e29b22;
+	--nav: #face7e;
 	--grey: #EBEBEB;
 	--grey-light: #F5F8FB;
 	--orange-light: #fbc059;

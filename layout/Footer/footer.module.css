@@ -1,12 +1,19 @@
 
 .footer {
-	background: #ebeced;
 	display: grid;
-	grid-template-columns: auto 240px 250px 300px auto auto;
-	grid-template-areas: 
-		". about_company catalog contacts map ."
-		". footer_bottom footer_bottom footer_bottom map ."
-	;
+	grid-template-columns: minmax(320px, 1600px);
+	margin: auto;
+	justify-items: center;
+}
+
+.wrapper {
+		display: grid;
+		width: 100%;
+		grid-template-columns: auto 240px 250px 300px 1fr auto;
+		grid-template-areas:
+			". about_company catalog contacts map ."
+			". footer_bottom footer_bottom footer_bottom map ."
+		;
 }
 
 .title {
@@ -52,11 +59,19 @@
 	gap: 5px;
 }
 
+.phone svg {
+	fill: var(--primary)
+}
+
 .time {
 	line-height: 20px;
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	gap: 5px;
+}
+
+.time svg {
+	fill: var(--primary)
 }
 
 .mail {
@@ -65,10 +80,18 @@
 	gap: 5px;
 }
 
+.mail svg {
+	fill: var(--primary)
+}
+
 .address {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
+}
+
+.address svg {
+	fill: var(--primary)
 }
 
 .map {
@@ -101,4 +124,77 @@
 .footer_bottom_link {
 	font-size: 11px;
 	margin-right: 10px;
+}
+
+@media(max-width:1600px) {
+	.footer {
+		grid-template-columns: minmax(320px, 1600px);
+	}
+}
+
+@media(max-width:1200px) {
+	.footer {
+		grid-template-columns: minmax(320px, 1200px);
+	}
+
+	.wrapper {
+		grid-template-columns: auto auto auto auto auto auto;
+	}
+}
+
+@media(max-width: 1000px) {
+	.footer {
+		grid-template-columns: minmax(320px, 765px);
+		padding: 20px;
+	}
+	.wrapper {
+		grid-template-columns: auto auto auto auto;
+		grid-template-areas:
+				". catalog about_company ."
+				". contacts map ."
+				". footer_bottom map ."
+			;
+	}
+
+	.listItem {
+		font-size: 22px;
+		line-height: 35px;
+	}
+
+	.title {
+		font-size: 25px;
+	}
+}
+
+@media(max-width: 550px) {
+	.footer {
+		grid-template-columns: minmax(320px, 550px);
+	}
+
+	.wrapper {
+		grid-template-columns: auto auto auto;
+		grid-template-areas:
+			". catalog  ."
+			". about_company ."
+			". contacts ."
+			". map ."
+			". footer_bottom ."
+		;
+		justify-items: center;
+	}
+	.map {
+		height: 300px;
+		margin-top: 20px;
+	}
+
+	.listItem {
+		font-size: 20px;
+		line-height: 35px;
+		text-align: center;
+	}
+
+	.title {
+		font-size: 25px;
+		text-align: center;
+	}
 }

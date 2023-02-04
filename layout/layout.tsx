@@ -4,15 +4,17 @@ import { Footer } from "./Footer/footer";
 import { Subscribe } from "./Subscribe/Subscribe";
 import { FunctionComponent } from "react";
 import styles from "./layout.module.css";
+import { Feedback } from "./Feedback/feedback";
+import { Nav } from "./Nav/nav";
 
 export const Layout = ({ children }: LayoutProps) => {
-  console.log("hi");
   return (
     <div className={styles.wrapper}>
+      <Nav className={styles.nav} />
       <Header className={styles.header} />
       <div className={styles.body}>{children}</div>
       <Subscribe className={styles.subscribe} />
-      <div className={styles.feedback}>FEEDBACK</div>
+      <Feedback className={styles.feedback} />
       <Footer className={styles.footer} />
     </div>
   );
