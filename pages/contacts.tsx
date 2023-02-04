@@ -1,4 +1,4 @@
-import { Contacts } from "../layout/Contacts/Contacts";
+import { Contacts } from "../layout/Contacts/contacts";
 import { WithLayout } from "../layout/layout";
 
 function PageContacts() {

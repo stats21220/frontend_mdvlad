@@ -59,10 +59,6 @@
 	gap: 5px;
 }
 
-.phone svg {
-	fill: var(--primary)
-}
-
 .time {
 	line-height: 20px;
 	display: inline-flex;
@@ -70,9 +66,6 @@
 	gap: 5px;
 }
 
-.time svg {
-	fill: var(--primary)
-}
 
 .mail {
 	display: inline-flex;
@@ -80,18 +73,10 @@
 	gap: 5px;
 }
 
-.mail svg {
-	fill: var(--primary)
-}
-
 .address {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-}
-
-.address svg {
-	fill: var(--primary)
 }
 
 .map {

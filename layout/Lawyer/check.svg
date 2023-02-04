@@ -1,7 +1,7 @@
 
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="15px" height="15px" viewBox="0 0 73.501 73.501" style="enable-background:new 0 0 73.501 73.501;"
-	 xml:space="preserve" fill="#0075BD">
+	 xml:space="preserve" fill="var(--primary)">
 <g>
 	<g>
 		<path d="M24.765,71.212c-2.617,0-5.073-1.016-6.917-2.859L2.926,54.627C1.018,52.722,0,50.263,0,47.648

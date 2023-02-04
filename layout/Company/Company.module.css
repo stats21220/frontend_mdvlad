@@ -1,19 +1,13 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: auto minmax(320px, 1250px) auto;
+  grid-template-columns: minmax(320px, 1250px);
   margin: auto;
-  grid-template-areas: 
-  ". title ."
-  ". description ."
-  ". table ."
-  ;
   gap: 0 30px;
 }
 
 .titleBlock{
   margin-top: 30px;
-  grid-area: title;
 }
 
 .title {
@@ -22,7 +16,6 @@
 
 .descriptionBlock {
   margin-top: 20px;
-  grid-area: description;
 }
 
 .description_one {
@@ -34,8 +27,7 @@
 }
 
 .property {
-  /* margin-top: 50px; */
-  grid-area: table;
+
 }
 .property table {
   margin: 0;

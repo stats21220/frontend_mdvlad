@@ -22,6 +22,7 @@ a {
 
 :root {
 	--primary: #0075BD;
+	/* --primary: black; */
 	--primary-hover: #0b679f;
 	--primary-light: #337AB7;
 	--black: #333;

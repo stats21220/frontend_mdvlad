@@ -7,6 +7,9 @@ import IPhone from "./phone.svg";
 import ISale from "./sale.svg";
 import cn from "classnames";
 import IMenu from "./menu.svg";
+import IBasket from "./basket.svg";
+import IHeart from "./heart.svg";
+import IRefresch from "./refresh.svg";
 
 export const Header = ({ className, ...props }: HeaderProps) => {
   return (
@@ -32,7 +35,21 @@ export const Header = ({ className, ...props }: HeaderProps) => {
               </Link>
             </div>
           </div>
-          <div className={styles.cart}>корзина</div>
+          <div className={styles.basket_wrapper}>
+            <Link href="/" className={styles.basket_icon}>
+              <IHeart />
+            </Link>
+            <Link href="/" className={styles.basket_icon}>
+              <IRefresch />
+            </Link>
+            <div className={styles.basket}>
+              <IBasket />
+              <div className={styles.basket_order}>
+                <span>Корзина</span>
+                <span>0.00 руб</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles.block_2}>
