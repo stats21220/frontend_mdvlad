@@ -2,10 +2,11 @@ import { LayoutProps } from "./layout.props";
 import { Header } from "./Header/header";
 import { Footer } from "./Footer/footer";
 import { Subscribe } from "./Subscribe/Subscribe";
-import { FunctionComponent } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 import styles from "./layout.module.css";
 import { Feedback } from "./Feedback/feedback";
 import { Nav } from "./Nav/nav";
+import { AppContextProvider, IAppContext } from "@/context/app.context";
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
@@ -20,14 +21,22 @@ export const Layout = ({ children }: LayoutProps) => {
   );
 };
 
-export const WithLayout = <T extends Record<string, unknown>>(
+export const WithLayout = <
+  T extends Record<string, unknown> & PropsWithChildren<IAppContext>
+>(
   Component: FunctionComponent<T>
 ) => {
   return function WithLayoutComponent(props: T): JSX.Element {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider
+        menu={props.menu}
+        firstLevelMenu={props.firstLevelMenu}
+        firstCategoryMenu={props.firstCategoryMenu}
+      >
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };

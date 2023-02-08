@@ -1,8 +1,15 @@
 import { WithLayout } from "@/layout/layout";
+import { GetStaticProps } from "next";
 import { useState } from "react";
 import { Button, Htag, Ptag, Rating, Tag } from "../components/index";
+import axios from "axios";
+import { MenuModel } from "@/interfaces/menu.interface";
 
-function Home(): JSX.Element {
+function Home({
+  menu,
+  firstLevelMenu,
+  firstCategoryMenu,
+}: HomeProps): JSX.Element {
   const [rating, setRating] = useState<number>(4);
 
   return (
@@ -60,3 +67,24 @@ function Home(): JSX.Element {
 }
 
 export default WithLayout(Home);
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const firstLevelMenu = "/";
+  const firstCategoryMenu = "/pilomateriali";
+  const { data: menu } = await axios.post<MenuModel[]>(
+    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
+  );
+  return {
+    props: {
+      menu,
+      firstLevelMenu,
+      firstCategoryMenu,
+    },
+  };
+};
+
+interface HomeProps extends Record<string, unknown> {
+  menu: MenuModel[];
+  firstLevelMenu: string;
+  firstCategoryMenu: string;
+}

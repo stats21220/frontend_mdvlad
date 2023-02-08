@@ -24,6 +24,7 @@
 
 .body {
 	grid-area: body;
+	margin-bottom: 30px;
 }
 
 .feedback {

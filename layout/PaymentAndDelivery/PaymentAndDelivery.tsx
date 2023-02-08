@@ -16,7 +16,7 @@ export const PaymentAndDelivery = () => {
         <Htag tag="h3" color="black" size="s">
           Оплата товаров и услуг
         </Htag>
-        <Ptag>
+        <div>
           <span>
             Произвести оплату за покупки вы можете одним из следующих способов:
           </span>
@@ -38,7 +38,7 @@ export const PaymentAndDelivery = () => {
               </span>
             </li>
           </ul>
-        </Ptag>
+        </div>
         <Ptag className={styles.descr} color="black">
           Для выбора оплаты товара с помощью банковской карты на странице заказа
           необходимо нажать кнопку "Безналичная оплата картой". Оплата

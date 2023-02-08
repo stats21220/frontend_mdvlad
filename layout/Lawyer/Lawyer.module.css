@@ -26,7 +26,7 @@
 .employee {
     margin-top: 30px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 20px;
     align-items: center;
 }

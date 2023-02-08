@@ -1,4 +1,4 @@
-import { Lawyer } from "../layout/Lawyer/Lawyer";
+import { Lawyer } from "../layout/Lawyer/lawyer";
 import { WithLayout } from "../layout/layout";
 
 function PageLawyer() {

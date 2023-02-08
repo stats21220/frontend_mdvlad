@@ -1,7 +1,7 @@
 import { Htag, Ptag } from "../../components";
 import ICheck from "./check.svg";
-import styles from "./Lawyer.module.css";
-import { ILawyer } from "./Lawyer.props";
+import styles from "./lawyer.module.css";
+import { ILawyer } from "./lawyer.props";
 import cn from "classnames";
 import IPhone from "./phone.svg";
 import IMail from "./mail.svg";
@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const Lawyer = ({ className, ...props }: ILawyer) => {
   return (
-    <section className={cn(className)}>
+    <section className={cn(className)} {...props}>
       <Htag className={styles.title} color="black" size="m" tag="h2">
         Работа с юридическими лицами
       </Htag>
