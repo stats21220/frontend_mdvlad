@@ -17,6 +17,7 @@ export interface ProductCharacteeristicsDto {
 export interface ProductCategoryItem {
 	_id: string
 	level: string;
+	alias: string;
 	route?: string;
 }
 

@@ -2,6 +2,7 @@
 export interface PageLevelItem {
 	level: string;
 	route: string;
+	alias: string;
 	_id: string;
 }
 

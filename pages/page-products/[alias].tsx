@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
     {
       category: page.alias,
-      limit: 10,
+      limit: 20,
     }
   );
 
