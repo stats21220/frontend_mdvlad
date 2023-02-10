@@ -1,15 +1,16 @@
 import { WithLayout } from "@/layout/layout";
-import { GetStaticProps } from "next";
+// import { GetStaticProps } from "next";
 import { useState } from "react";
 import { Button, Htag, Ptag, Rating, Tag } from "../components/index";
-import axios from "axios";
-import { MenuModel } from "@/interfaces/menu.interface";
+// import axios from "axios";
+// import { IMenuLevelItem, MenuModel } from "@/interfaces/menu.interface";
 
-function Home({
-  menu,
-  firstLevelMenu,
-  firstCategoryMenu,
-}: HomeProps): JSX.Element {
+function Home(): JSX.Element {
+  //   {
+  //   menu,
+  //   firstLevelMenu,
+  //   firstCategoryMenu,
+  // }: HomeProps
   const [rating, setRating] = useState<number>(4);
 
   return (
@@ -68,23 +69,20 @@ function Home({
 
 export default WithLayout(Home);
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const firstLevelMenu = "/";
-  const firstCategoryMenu = "/pilomateriali";
-  const { data: menu } = await axios.post<MenuModel[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
-  );
-  return {
-    props: {
-      menu,
-      firstLevelMenu,
-      firstCategoryMenu,
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
-interface HomeProps extends Record<string, unknown> {
-  menu: MenuModel[];
-  firstLevelMenu: string;
-  firstCategoryMenu: string;
-}
+//   const { data: menu } = await axios.post<MenuModel[]>(
+//     process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
+//   );
+//   return {
+//     props: {
+//       firstMenu,
+//       secondMenu,
+//     },
+//   };
+// };
+
+// interface HomeProps extends Record<string, unknown> {
+//   firstMenu: IMenuLevelItem[]
+//   secondMenu: IMenuLevelItem[]
+// }

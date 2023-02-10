@@ -1,5 +1,6 @@
 
 export interface IMenuLevelItem {
+	isOpened?: boolean;
 	title: string;
 	route: string;
 	sortId: number;

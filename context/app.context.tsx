@@ -1,36 +1,37 @@
-import { MenuModel } from "@/interfaces/menu.interface";
+import { IMenuLevelItem } from "@/interfaces/menu.interface";
 import { createContext, ReactNode, useState } from "react";
 
 export interface IAppContext {
-  menu: MenuModel[];
-  firstLevelMenu: string;
-  firstCategoryMenu: string;
-  setMenu?: (newMenu: MenuModel[]) => void;
+  firstMenu: IMenuLevelItem[];
+  secondMenu: IMenuLevelItem[];
+  setMenu?: (newMenu: IMenuLevelItem[]) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
-  menu: [],
-  firstLevelMenu: "/",
-  firstCategoryMenu: "pilomateriali",
+  firstMenu: [],
+  secondMenu: [],
 });
 
 export const AppContextProvider = ({
-  menu,
-  firstLevelMenu,
-  firstCategoryMenu,
+  firstMenu,
+  secondMenu,
   children,
 }: IAppContext & {
   children: ReactNode;
 }): JSX.Element => {
-  const [menuState, setMenuState] = useState<MenuModel[]>(menu);
+  const [menuState, setMenuState] = useState<IMenuLevelItem[]>(secondMenu);
 
-  const setMenu = (newMenu: MenuModel[]) => {
+  const setMenu = (newMenu: IMenuLevelItem[]) => {
     setMenuState(newMenu);
   };
 
   return (
     <AppContext.Provider
-      value={{ menu: menuState, firstLevelMenu, firstCategoryMenu, setMenu }}
+      value={{
+        firstMenu,
+        secondMenu: menuState,
+        setMenu,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -6,6 +6,7 @@ import { FunctionComponent, PropsWithChildren } from "react";
 import styles from "./layout.module.css";
 import { Feedback } from "./Feedback/feedback";
 import { Nav } from "./Nav/nav";
+import { AppContextProvider, IAppContext } from "@/context/app.context";
 
 const Layout = ({ children }: LayoutProps) => {
   return (
@@ -20,16 +21,21 @@ const Layout = ({ children }: LayoutProps) => {
   );
 };
 
-export const WithLayout = <
-  T extends Record<string, unknown> & PropsWithChildren
+export const WithLayoutPageProductsComponent = <
+  T extends Record<string, unknown> & PropsWithChildren<IAppContext>
 >(
   Component: FunctionComponent<T>
 ) => {
   return function WithLayoutComponent(props: T): JSX.Element {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider
+        firstMenu={props.firstMenu}
+        secondMenu={props.secondMenu}
+      >
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };
