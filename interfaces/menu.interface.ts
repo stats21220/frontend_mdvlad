@@ -5,10 +5,14 @@ export interface IMenuLevelItem {
 	sortId: number;
 	pageId: number;
 	alias: string;
-	isOpened?: boolean;
+	firstLevelAlias: '$categories.first.alias',
+	secondlLevelAlias?: string,
+	thirdLevelAlias?: string,
+	fifthLevelAlias?: string,
 }
 
 export interface MenuModel {
-	_id: string
+	_id: string;
+	isOpened?: boolean;
 	pages: IMenuLevelItem[];
 }

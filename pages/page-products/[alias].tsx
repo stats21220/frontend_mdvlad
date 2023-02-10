@@ -5,7 +5,7 @@ import { MenuModel } from "@/interfaces/menu.interface";
 import { ParsedUrlQuery } from "querystring";
 import { PageProductsModel } from "@/interfaces/page.products";
 import { ProductModel } from "@/interfaces/products.interface";
-import { Menu } from "@/layout/Menu/menu";
+import { PageProductsComponent } from "@/layout/PageProductsComponent/page.products.component";
 
 function PageProducts({
   menu,
@@ -16,9 +16,7 @@ function PageProducts({
 }: PageProductsProps): JSX.Element {
   return (
     <>
-      <Menu />
-      <h1>{page.title}</h1>
-      <span>{products.length}</span>
+      <PageProductsComponent />
     </>
   );
 }
@@ -51,31 +49,42 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
 
   const firstLevelMenu = "/";
   const firstCategoryMenu = "pilomateriali";
-  const { data: menu } = await axios.post<MenuModel[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
-  );
+  try {
+    const { data: menu } = await axios.post<MenuModel[]>(
+      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
+    );
 
-  const { data: page } = await axios.get<PageProductsModel>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/" + params?.alias
-  );
-
-  const { data: products } = await axios.post<ProductModel[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
-    {
-      category: page.alias,
-      limit: 20,
+    if (menu.length === 0) {
+      return {
+        notFound: true,
+      };
     }
-  );
+    const { data: page } = await axios.get<PageProductsModel>(
+      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/" + params?.alias
+    );
 
-  return {
-    props: {
-      menu,
-      page,
-      products,
-      firstLevelMenu,
-      firstCategoryMenu,
-    },
-  };
+    const { data: products } = await axios.post<ProductModel[]>(
+      process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
+      {
+        category: page.alias,
+        limit: 20,
+      }
+    );
+
+    return {
+      props: {
+        menu,
+        page,
+        products,
+        firstLevelMenu,
+        firstCategoryMenu,
+      },
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 interface PageProductsProps extends Record<string, unknown> {
