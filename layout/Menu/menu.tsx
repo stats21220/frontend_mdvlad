@@ -1,83 +1,44 @@
 import styles from "./menu.module.css";
 import cn from "classnames";
-import { AppContext } from "@/context/app.context";
-import { IMenuLevelItem } from "@/interfaces/menu.interface";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
-import IArrow from "./arrow.svg";
 
-export const Menu = () => {
-  const { firstMenu, secondMenu, setMenu } = useContext(AppContext);
+import { AppContext } from "@/context/app.context";
+import { IMenu } from "./menu.props";
 
-  console.log(secondMenu);
+export const Menu = ({ className }: IMenu) => {
+  const { menu } = useContext(AppContext);
 
-  // useEffect(() => {
-  //   setMenu &&
-  //     setMenu(
-  //       firstMenu &&
-  //         firstMenu.map((m) => {
-  //           if (m.alias === currentRoute) {
-  //             m.isOpened = true;
-  //           }
-  //           return m;
-  //         })
-  //     );
-  // }, []);
+  const router = useRouter();
 
-  const openSecondLevel = (secondCategory: string, edit?: string) => {
-    setMenu &&
-      setMenu(
-        secondMenu &&
-          secondMenu.map((m) => {
-            if (m.alias === secondCategory) {
-              edit ? (m.isOpened = !m.isOpened) : (m.isOpened = true);
-            }
-            return m;
-          })
-      );
-  };
-
-  const routerPath = useRouter();
-
-  const currentRoute = routerPath.asPath.split("/")[2];
+  const firstRoute = `/${router.asPath.split("/")[1]}`;
+  const secondRoute = `/${router.asPath.split("/")[1]}/${
+    router.asPath.split("/")[2]
+  }`;
 
   const buildFirstMenu = () => {
+    const firstMenu = menu && menu.find((f) => f._id === "/");
+
     return (
       <div className={cn(styles.firstCategory)}>
         {firstMenu &&
-          firstMenu.map((first) => {
+          firstMenu.pages.map((first) => {
             return (
               <div key={first.alias}>
                 <div
                   className={cn(styles.firstCategoryItem, {
                     [styles.firstCategoryItemActive]:
-                      first.isOpened || currentRoute === first.alias,
-                    //   [styles.firstCategoryItemActive]: !!first.isOpened,
+                      !!first.isOpened || firstRoute === first.route,
                   })}
                 >
                   <Link href={first.route}>
-                    <div
-                      className={styles.link}
-                      onClick={() => openSecondLevel(first.route)}
-                    >
+                    <div className={styles.link}>
                       <span>{first.title}</span>
                     </div>
                   </Link>
-                  <div
-                    className={styles.iconOpen}
-                    onClick={() => openSecondLevel(first.route, "edit")}
-                  >
-                    <span
-                      className={cn({
-                        [styles.iconOpenActive]: first?.isOpened,
-                      })}
-                    >
-                      <IArrow />
-                    </span>
-                  </div>
                 </div>
-                {secondMenu && buildSecondLevel(secondMenu)}
+                {buildSecondLevel(first.route)}
               </div>
             );
           })}
@@ -85,20 +46,23 @@ export const Menu = () => {
     );
   };
 
-  const buildSecondLevel = (secondMenu: IMenuLevelItem[]) => {
+  const buildSecondLevel = (secondId: string) => {
+    const secondMenu = menu.find((s) => s._id === secondId);
     return (
       <div
         className={cn(styles.secondCategory, {
-          [styles.secondCategoryActive]: secondMenu,
+          [styles.secondCategoryActive]:
+            secondMenu?.isOpened ||
+            (secondMenu && secondMenu._id === firstRoute),
         })}
       >
         {secondMenu &&
-          secondMenu.map((second) => (
+          secondMenu.pages.map((second) => (
             <Link key={second.alias} href={second.route}>
               <div
                 className={cn(styles.secondCategoryItem, {
                   [styles.secondCategoryItemActive]:
-                    second.alias === currentRoute,
+                    second.route === secondRoute,
                 })}
               >
                 <span>{second.title}</span>
@@ -109,5 +73,5 @@ export const Menu = () => {
     );
   };
 
-  return <div className={styles.menu}>{buildFirstMenu()}</div>;
+  return <div className={cn(styles.menu, className)}>{buildFirstMenu()}</div>;
 };

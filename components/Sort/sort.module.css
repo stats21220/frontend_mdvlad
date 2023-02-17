@@ -1,0 +1,13 @@
+.sort {
+	display: flex;
+	gap: 15px;
+}
+
+.sort {
+	text-decoration: underline;
+}
+
+.active {
+	font-weight: 700;
+	color: var(--primary)
+}

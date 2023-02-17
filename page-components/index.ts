@@ -1,0 +1,1 @@
+export * from './page-products-component/page.products.component';

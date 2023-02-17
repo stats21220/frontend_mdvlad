@@ -24,6 +24,7 @@
 
 .inputWrapper {
 	position: relative;
+	width: 100%;
 }
 
 .errorMessage {

@@ -8,7 +8,7 @@ import { Feedback } from "./Feedback/feedback";
 import { Nav } from "./Nav/nav";
 import { AppContextProvider, IAppContext } from "@/context/app.context";
 
-const Layout = ({ children }: LayoutProps) => {
+const LayoutPageProducts = ({ children }: LayoutProps) => {
   return (
     <div className={styles.wrapper}>
       <Nav className={styles.nav} />
@@ -28,13 +28,10 @@ export const WithLayoutPageProductsComponent = <
 ) => {
   return function WithLayoutComponent(props: T): JSX.Element {
     return (
-      <AppContextProvider
-        firstMenu={props.firstMenu}
-        secondMenu={props.secondMenu}
-      >
-        <Layout>
+      <AppContextProvider menu={props.menu}>
+        <LayoutPageProducts>
           <Component {...props} />
-        </Layout>
+        </LayoutPageProducts>
       </AppContextProvider>
     );
   };

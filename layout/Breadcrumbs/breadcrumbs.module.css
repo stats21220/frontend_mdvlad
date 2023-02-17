@@ -1,0 +1,7 @@
+.breadcrumbs {
+	display: flex;
+	gap: 10px;
+	font-size: 12px;
+	text-decoration: underline;
+	width: 100%;
+}

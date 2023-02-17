@@ -6,10 +6,10 @@ export interface IMenuLevelItem {
 	sortId: number;
 	pageId: number;
 	alias: string;
-	firstLevelAlias: '$categories.first.alias',
-	secondlLevelAlias?: string,
-	thirdLevelAlias?: string,
-	fifthLevelAlias?: string,
+	firstLevelAlias: string;
+	secondlLevelAlias?: string;
+	thirdLevelAlias?: string;
+	fifthLevelAlias?: string;
 }
 
 export interface MenuModel {

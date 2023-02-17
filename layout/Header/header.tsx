@@ -2,7 +2,7 @@ import { HeaderProps } from "./header.props";
 import styles from "./header.module.css";
 import ILogo from "./logo.svg";
 import Link from "next/link";
-import { Ptag } from "../../components";
+import { Input, Ptag, Search } from "../../components";
 import IPhone from "./phone.svg";
 import ISale from "./sale.svg";
 import cn from "classnames";
@@ -23,7 +23,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
             <Ptag size="s">ПРОДАЖА ПИЛОМАТЕРИАЛОВ И СТРОЙТОВАРОВ</Ptag>
           </div>
           <div className={styles.search}>
-            <input type="text" />
+            <Search />
           </div>
           <div className={styles.phone}>
             <div>
@@ -54,10 +54,12 @@ export const Header = ({ className, ...props }: HeaderProps) => {
       </div>
       <div className={styles.block_2}>
         <div className={styles.block_2_item}>
-          <div className={styles.menu_catalog}>
-            <IMenu />
-            <span>Весь каталог</span>
-          </div>
+          <Link href={"/pilomateriali"}>
+            <div className={styles.menu_catalog}>
+              <IMenu />
+              <span>Весь каталог</span>
+            </div>
+          </Link>
           <div className={styles.menu_item}>
             <span>Программа лояльности</span>
           </div>

@@ -1,7 +1,7 @@
 import { WithLayoutPageProductsComponent } from "@/layout/layout.page.product";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import axios from "axios";
-import { IMenuLevelItem, MenuModel } from "@/interfaces/menu.interface";
+import { MenuModel } from "@/interfaces/menu.interface";
 import { ParsedUrlQuery } from "querystring";
 import { PageProductsModel } from "@/interfaces/page.products";
 import { ProductModel } from "@/interfaces/products.interface";
@@ -18,18 +18,15 @@ function PageProducts({ products, page }: PageProductsProps): JSX.Element {
 export default WithLayoutPageProductsComponent(PageProducts);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const firstLevelMenu = "/";
-
   const paths: string[] = [];
 
-  const { data: firstMenu } = await axios.post<IMenuLevelItem[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/findLevelPage",
-    { level: firstLevelMenu }
+  const { data: menu } = await axios.post<MenuModel[]>(
+    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
   );
 
-  if (firstMenu.length !== 0) {
-    for (const first of firstMenu) {
-      paths.push(first.route);
+  for (const s of menu) {
+    if (s._id.split("/").length == 1) {
+      paths.push(s._id);
     }
   }
 
@@ -48,34 +45,30 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     };
   }
 
-  const firstLevelMenu = "/";
   try {
-    const { data: firstMenu } = await axios.post<IMenuLevelItem[]>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/findLevelPage",
-      { level: firstLevelMenu }
-    );
-
-    if (!firstMenu) {
-      return {
-        notFound: true,
-      };
-    }
-
-    const firstCategoryItem = firstMenu.find((s) => s.alias === params.type);
-
-    if (!firstCategoryItem) {
-      return {
-        notFound: true,
-      };
-    }
-
     const { data: menu } = await axios.post<MenuModel[]>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
     );
 
+    if (!menu) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const secondCategoryItem = menu.find(
+      (s) => s._id === `/${params.type}/${params.second}`
+    );
+
+    if (!secondCategoryItem) {
+      return {
+        notFound: true,
+      };
+    }
+
     const { data: page } = await axios.post<PageProductsModel>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/getPage",
-      { route: `/${params.type}` }
+      { route: `/${params.type}/${params.second}` }
     );
 
     const { data: products } = await axios.post<ProductModel[]>(

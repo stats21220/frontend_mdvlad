@@ -1,0 +1,50 @@
+
+.wrapper {
+	margin-top: 20px;
+	display: grid;
+	grid-template-columns: 320px auto;
+	grid-template-areas: 
+		"breadcrumbs breadcrumbs"
+		"menu title"
+		"menu submenu"
+		"menu sort"
+		"menu products"
+		"menu description"
+		"menu description";
+	grid-template-rows: auto auto auto 1fr auto auto;
+}
+
+.breadcrumbs {
+	margin-left: 30px;
+	grid-area: breadcrumbs;
+}
+
+.title {
+	margin-top: 20px;
+	grid-area: title;
+}
+
+.sort {
+	margin-top: 20px;
+	grid-area: sort;
+}
+
+.menu {
+	grid-area: menu;
+}
+
+.submenu {
+	margin-top: 10px;
+	grid-area: submenu;
+}
+
+.products{
+	margin-top: 20px;
+	grid-area: products;
+}
+
+.description {
+	margin-top: 30px;
+	grid-area: description;
+}
+

@@ -5,7 +5,7 @@ export interface PriceProductDto {
 	_id: string
 	name: string;
 	value: number;
-	count: number;
+	count?: number;
 }
 
 export interface ProductCharacteeristicsDto {
@@ -49,4 +49,8 @@ export interface ProductModel {
 	weight: number;
 	popular?: 0 | 1;
 	special?: 0 | 1;
+}
+
+export interface ProductNotFound {
+	productId: null
 }
