@@ -13,13 +13,10 @@ function PageProducts({
   products,
   page,
 }: PageProductsProps): JSX.Element {
-  console.log(products, "products");
-  console.log(product, "product");
-
   return (
     <>
       {product && product.productId !== null ? (
-        <PageProductComponent product={product} page={page} />
+        <PageProductComponent product={product} />
       ) : (
         <PageProductsComponent page={page} products={products} />
       )}
@@ -54,7 +51,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       }
     }
   }
-  console.log(paths, "hz");
 
   return {
     paths,

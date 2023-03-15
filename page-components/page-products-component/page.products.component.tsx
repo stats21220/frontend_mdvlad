@@ -15,7 +15,10 @@ export const PageProductsComponent = ({
 }: IPageProducts) => {
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <Breadcrumbs className={styles.breadcrumbs} page={page} />
+      <Breadcrumbs
+        className={styles.breadcrumbs}
+        page={page && page.categories}
+      />
       <Htag color="black" className={styles.title}>
         {page && page.title}
       </Htag>

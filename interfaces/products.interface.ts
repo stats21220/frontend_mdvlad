@@ -1,3 +1,4 @@
+import { LevelPage } from "./page.products";
 
 
 
@@ -21,14 +22,6 @@ export interface ProductCategoryItem {
 	route?: string;
 }
 
-export interface ProductCategoryLevel {
-	_id: string
-	first: ProductCategoryItem;
-	second?: ProductCategoryItem;
-	third?: ProductCategoryItem;
-	fifth?:  ProductCategoryItem;
-}
-
 
 
 
@@ -40,7 +33,7 @@ export interface ProductModel {
 	title: string;
 	route: string;
 	alias: string;
-	categories: ProductCategoryLevel;
+	categories: LevelPage;
 	price: PriceProductDto[];
 	oldPrice?: PriceProductDto[];
 	categoriesRoute: string[];

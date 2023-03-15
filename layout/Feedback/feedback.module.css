@@ -12,13 +12,8 @@
 .wrapper {
 	height: 422px;
 	display: grid;
-	grid-template-columns: auto minmax(320px, 520px) minmax(320px, 520px) auto;
+	grid-template-columns: auto;
 	grid-template-rows: auto  auto 1fr;
-	grid-template-areas: 
-		"title title title title"
-		"callback callback callback callback"
-		". user comment ."
-		;
 	justify-items: center;
 	gap:0 10px
 }
@@ -26,7 +21,6 @@
 .title {
 	padding: 0 30px;
 	margin-top: 40px;
-	grid-area: title;
 	text-align: center;
 }
 
@@ -34,9 +28,14 @@
 	margin-top: 20px;
 	color: var(--white);
 	font-size: 24px;
-	grid-area: callback;
 	padding: 0 30px;
 	text-align: center;
+}
+
+.form {
+	display: grid;
+	width: 1000px;
+	grid-template-columns: 500px auto;
 }
 
 .user {
@@ -45,7 +44,6 @@
 	width: 100%;
 	grid-template-columns: auto;
 	grid-template-rows: 1fr 1fr 1fr auto;
-	grid-area: user;
 	padding: 10px;
 	padding-top: 30px;
 }
@@ -56,7 +54,6 @@
 	width: 100%;
 	grid-template-columns: 1fr;
 	grid-template-rows: auto  auto;
-	grid-area: comment;
 	padding: 10px;
 	padding-top: 30px;
 }
@@ -85,6 +82,13 @@
 	height: 100%;
 }
 
+.success {
+	color: var(--white);
+	text-align: center;
+}
+
+
+
 
 @media(max-width: 1200px) {
 	.title {
@@ -100,12 +104,6 @@
 @media(max-width: 765px) {
 	.wrapper {
 		grid-template-columns: minmax(320px, 520px);
-		grid-template-areas:
-			"title"
-			"callback"
-			"user"
-			"comment"
-		;
 		justify-content: center;
 		height: 100%;
 		/* padding: 10px; */

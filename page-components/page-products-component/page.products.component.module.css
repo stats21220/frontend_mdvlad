@@ -1,6 +1,6 @@
 
 .wrapper {
-	margin-top: 20px;
+	margin-top: 30px;
 	display: grid;
 	grid-template-columns: 320px auto;
 	grid-template-areas: 
@@ -15,7 +15,6 @@
 }
 
 .breadcrumbs {
-	margin-left: 30px;
 	grid-area: breadcrumbs;
 }
 

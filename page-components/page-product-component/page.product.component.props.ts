@@ -5,6 +5,4 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 export interface IPageProduct extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,HTMLDivElement> {
   product: ProductModel;
-  // products: ProductModel[];
-  page: PageProductsModel;
 }

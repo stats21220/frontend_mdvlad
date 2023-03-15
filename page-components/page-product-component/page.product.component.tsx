@@ -2,7 +2,6 @@ import { IPageProduct } from "./page.product.component.props";
 import styles from "./page.product.component.module.css";
 import cn from "classnames";
 import { Breadcrumbs } from "@/layout/Breadcrumbs/breadcrumbs";
-import { Ptag } from "@/components";
 import { Product } from "@/layout/Product/product";
 import { Menu } from "@/layout/Menu/menu";
 // import { Products } from "@/layout/Products/products";
@@ -10,18 +9,17 @@ import { Menu } from "@/layout/Menu/menu";
 
 export const PageProductComponent = ({
   product,
-  // products,
-  page,
   className,
   ...props
 }: IPageProduct) => {
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <Breadcrumbs className={styles.breadcrumbs} page={page} />
+      <Breadcrumbs
+        className={styles.breadcrumbs}
+        page={product && product.categories}
+      />
       <Menu className={styles.menu} />
-      <Product product={product} />
-      {/* <Products className={styles.products} products={products} /> */}
-      <Ptag className={styles.description}>{page && page.description}</Ptag>
+      <Product className={styles.product} product={product} />
     </div>
   );
 };

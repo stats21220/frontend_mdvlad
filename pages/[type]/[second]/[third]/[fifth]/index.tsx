@@ -10,13 +10,14 @@ import { PageProductComponent } from "@/page-components/page-product-component/p
 
 function PageProducts({
   product,
+  update,
   products,
   page,
 }: PageProductsProps): JSX.Element {
   return (
     <>
       {product && product.productId !== null ? (
-        <PageProductComponent product={product} page={page} />
+        <PageProductComponent product={product} />
       ) : (
         <PageProductsComponent page={page} products={products} />
       )}
@@ -80,10 +81,25 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
       };
     }
 
-    const { data: page } = await axios.post<PageProductsModel>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/getPage",
-      { route: `/${params.type}/${params.second}/${params.third}` }
+    const { data: product } = await axios.post<ProductModel>(
+      process.env.NEXT_PUBLIC_DOMAIN + "/api/product/getProduct",
+      {
+        route: `/${params.type}/${params.second}/${params.third}/${params.fifth}`,
+      }
     );
+
+    const { data: page } =
+      product && product.productId !== null
+        ? await axios.post<PageProductsModel>(
+            process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/getPage",
+            { route: `/${params.type}/${params.second}/${params.third}` }
+          )
+        : await axios.post<PageProductsModel>(
+            process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/getPage",
+            {
+              route: `/${params.type}/${params.second}/${params.third}${params.fifth}`,
+            }
+          );
 
     if (!page) {
       return {
@@ -95,13 +111,6 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
       process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
       {
         category: page.alias,
-      }
-    );
-
-    const { data: product } = await axios.post<ProductModel>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/product/getProduct",
-      {
-        route: `/${params.type}/${params.second}/${params.third}/${params.fifth}`,
       }
     );
 

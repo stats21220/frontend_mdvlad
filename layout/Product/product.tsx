@@ -1,7 +1,7 @@
 import { IProduct } from "./product.props";
 import styles from "./product.module.css";
 import cn from "classnames";
-import { Button, Htag } from "@/components";
+import { Button, Htag, MyImage } from "@/components";
 // import { priceRu } from "@/helpers/helpers";
 
 export const Product = ({ product, className, ...props }: IProduct) => {
@@ -9,11 +9,26 @@ export const Product = ({ product, className, ...props }: IProduct) => {
     <div className={cn(className, styles.product)} {...props}>
       <div className={styles.block_image}>
         <div className={styles.image}>
-          <span>{product.image}</span>
-          <span>
+          <div>
+            <MyImage
+              src={
+                process.env.NEXT_PUBLIC_DOMAIN +
+                `/static/${product.productId}/${product.productId}.700.webp`
+              }
+              defaultImageSrc={
+                process.env.NEXT_PUBLIC_DOMAIN +
+                `/static/not_image/not_image.700.webp`
+              }
+              alt={product.title}
+              height={405}
+              width={600}
+              quality={70}
+            />
+          </div>
+          <div>
             *Товар на складе может иметь незначительные отличия от изображения
             на сайте.
-          </span>
+          </div>
         </div>
         <div className={styles.product_info}>
           <div>
@@ -34,7 +49,9 @@ export const Product = ({ product, className, ...props }: IProduct) => {
         </div>
       </div>
       <div className={styles.block_sale}>
-        <Htag color="black">{product.title}</Htag>
+        <Htag color="black" className={styles.title}>
+          {product.title}
+        </Htag>
         <div className={styles.line}></div>
         <div className={styles.pice}>
           <span>price 1000</span>
