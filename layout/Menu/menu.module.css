@@ -32,7 +32,7 @@
 	background: var(--primary-hover);
 }
 
-.iconOpen {
+.icon {
 	display: flex;
 	align-items: center;
 	justify-content: center;

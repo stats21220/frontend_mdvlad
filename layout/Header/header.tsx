@@ -54,7 +54,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
       </div>
       <div className={styles.block_2}>
         <div className={styles.block_2_item}>
-          <Link href={"/pilomateriali"}>
+          <Link href={"/page/pilomateriali"}>
             <div className={styles.menu_catalog}>
               <IMenu />
               <span>Весь каталог</span>

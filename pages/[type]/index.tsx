@@ -1,10 +1,10 @@
 import { WithLayoutPageProductsComponent } from "@/layout/layout.page.product";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import axios from "axios";
-import { IMenuLevelItem, MenuModel } from "@/interfaces/menu.interface";
+import { MenuModel } from "@/interfaces/menu.interface";
 import { ParsedUrlQuery } from "querystring";
 import { PageProductsModel } from "@/interfaces/page.products";
-import { ProductModel } from "@/interfaces/products.interface";
+import { ProductsModel } from "@/interfaces/products.interface";
 import { PageProductsComponent } from "@/page-components";
 
 function PageProducts({ products, page }: PageProductsProps): JSX.Element {
@@ -18,20 +18,16 @@ function PageProducts({ products, page }: PageProductsProps): JSX.Element {
 export default WithLayoutPageProductsComponent(PageProducts);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const firstLevelMenu = "/";
-
-  const paths: string[] = [];
-
-  const { data: firstMenu } = await axios.post<IMenuLevelItem[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/findLevelPage",
-    { level: firstLevelMenu }
+  const { data: menu } = await axios.post<MenuModel[]>(
+    process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
   );
 
-  if (firstMenu.length !== 0) {
-    for (const first of firstMenu) {
-      paths.push(first.route);
-    }
-  }
+  const paths: string[] = menu.flatMap((m) =>
+    m.pages.map((item) => `/${item.alias}`)
+  );
+
+  //////////////////////////////////////
+  // console.log(paths);
 
   return {
     paths,
@@ -48,43 +44,42 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     };
   }
 
-  const firstLevelMenu = "/";
   try {
-    const { data: firstMenu } = await axios.post<IMenuLevelItem[]>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/findLevelPage",
-      { level: firstLevelMenu }
-    );
+    // const { data: firstMenu } = await axios.post<MenuModel[]>(
+    //   process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
+    // );
 
-    if (!firstMenu) {
-      return {
-        notFound: true,
-      };
-    }
+    // if (!firstMenu) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
 
-    const firstCategoryItem = firstMenu.find((s) => s.alias === params.type);
+    // const firstCategoryItem = firstMenu.find((s) => s.alias === params.type);
 
-    if (!firstCategoryItem) {
-      return {
-        notFound: true,
-      };
-    }
+    // if (!firstCategoryItem) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
 
     const { data: menu } = await axios.post<MenuModel[]>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
     );
 
-    const { data: page } = await axios.post<PageProductsModel>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/getPage",
-      { route: `/${params.type}` }
+    const { data: page } = await axios.get<PageProductsModel>(
+      process.env.NEXT_PUBLIC_DOMAIN + `/api/page-products/${params.type}`
     );
 
-    const { data: products } = await axios.post<ProductModel[]>(
+    const { data: products } = await axios.post<ProductsModel[]>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
       {
-        category: page.alias,
-        limit: 20,
+        alias: [params.type],
+        // limit: 20,
       }
     );
+
+    console.log(products);
 
     return {
       props: {
@@ -104,5 +99,5 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
 interface PageProductsProps extends Record<string, unknown> {
   menu: MenuModel[];
   page: PageProductsModel;
-  products: ProductModel[];
+  products: ProductsModel[];
 }

@@ -1,7 +1,6 @@
 
 export interface PageLevelItem {
 	level: string;
-	route: string;
 	alias: string;
 	_id: string;
 }
@@ -24,10 +23,7 @@ export interface PageProductsModel {
 	alias: string;
 	description: string;
 	categories: LevelPage;
-	categoriesRoute: string[]
-	route?: string;
-	parentRoute?: string;
-	parentTitle?: string;
-	categoriessecond: undefined;
+	aliases: string[]
+	parentAlias?: string;
 	_id: string;
 }

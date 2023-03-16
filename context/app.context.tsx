@@ -1,4 +1,4 @@
-import { IMenuLevelItem, MenuModel } from "@/interfaces/menu.interface";
+import { MenuModel } from "@/interfaces/menu.interface";
 import { createContext, ReactNode, useState } from "react";
 
 export interface IAppContext {

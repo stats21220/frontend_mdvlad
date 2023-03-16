@@ -12,7 +12,7 @@ export const Products = ({ products, className }: IProducts) => {
         products.map((product) => {
           return (
             <Card key={product.productId}>
-              <Link href={product.route}>
+              <Link href={`/page/${product.alias}`}>
                 <div className={cn(styles.product)}>
                   <div className={styles.image}>
                     <MyImage

@@ -15,12 +15,12 @@ export interface ProductCharacteeristicsDto {
 	value: string | number;
 }
 
-export interface ProductCategoryItem {
-	_id: string
-	level: string;
-	alias: string;
-	route?: string;
-}
+// export interface ProductCategoryItem {
+// 	_id: string
+// 	level: string;
+// 	alias: string;
+// 	route?: string;
+// }
 
 
 
@@ -31,13 +31,27 @@ export interface ProductModel {
 	productId: number;
 	image: string;
 	title: string;
-	route: string;
 	alias: string;
 	categories: LevelPage;
 	price: PriceProductDto[];
 	oldPrice?: PriceProductDto[];
-	categoriesRoute: string[];
+	aliases: string[];
 	characteristics: ProductCharacteeristicsDto;
+	count: number;
+	weight: number;
+	popular?: 0 | 1;
+	special?: 0 | 1;
+}
+
+export interface ProductsModel {
+	_id: string
+	productId: number;
+	image: string;
+	title: string;
+	alias: string;
+	price: PriceProductDto[];
+	oldPrice: PriceProductDto[];
+	aliasesRoutes: string[];
 	count: number;
 	weight: number;
 	popular?: 0 | 1;
