@@ -28,7 +28,7 @@ export const WithLayoutPageProductsComponent = <
 ) => {
   return function WithLayoutComponent(props: T): JSX.Element {
     return (
-      <AppContextProvider menu={props.menu}>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
         <LayoutPageProducts>
           <Component {...props} />
         </LayoutPageProducts>

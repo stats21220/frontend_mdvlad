@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from "querystring";
 import { PageProductsModel } from "@/interfaces/page.products";
 import { ProductsModel } from "@/interfaces/products.interface";
 import { PageProductsComponent } from "@/page-components";
+import { FirstMenuAlias } from "@/helpers/helpers";
 
 function PageProducts({ products, page }: PageProductsProps): JSX.Element {
   return (
@@ -63,6 +64,8 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     //   };
     // }
 
+    const firstCategory: FirstMenuAlias = "pilomateriali";
+
     const { data: menu } = await axios.post<MenuModel[]>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
     );
@@ -70,6 +73,8 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     const { data: page } = await axios.get<PageProductsModel>(
       process.env.NEXT_PUBLIC_DOMAIN + `/api/page-products/${params.type}`
     );
+
+    // const secondCategory = page.categories.second?.alias;
 
     const { data: products } = await axios.post<ProductsModel[]>(
       process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
@@ -84,6 +89,7 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     return {
       props: {
         menu,
+        firstCategory,
         page,
         products,
       },
@@ -98,6 +104,8 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
 
 interface PageProductsProps extends Record<string, unknown> {
   menu: MenuModel[];
+  firstCategory: FirstMenuAlias;
+  // secondCategory?: string;
   page: PageProductsModel;
   products: ProductsModel[];
 }
