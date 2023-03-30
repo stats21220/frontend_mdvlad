@@ -4,15 +4,18 @@ import cn from "classnames";
 import { Card, MyImage } from "@/components";
 import { priceRu } from "@/helpers/helpers";
 import Link from "next/link";
+import { useContext } from "react";
+import { AppContext } from "@/context/app.context";
 
 export const Products = ({ products, className }: IProducts) => {
+  const { firstCategory } = useContext(AppContext);
   return (
     <div className={cn(styles.products, className)}>
       {products && products.length !== 0 ? (
         products.map((product) => {
           return (
             <Card key={product.productId}>
-              <Link href={`/page/${product.alias}`}>
+              <Link href={`/${product.alias}`}>
                 <div className={cn(styles.product)}>
                   <div className={styles.image}>
                     <MyImage

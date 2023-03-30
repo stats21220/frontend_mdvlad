@@ -4,14 +4,16 @@
 	display: grid;
 	grid-template-columns: 320px auto;
 	grid-template-areas: 
-		"breadcrumbs breadcrumbs"
-		"menu title"
-		"menu submenu"
-		"menu sort"
-		"menu products"
-		"menu description"
-		"menu description";
-	grid-template-rows: auto auto auto 1fr auto auto;
+	"breadcrumbs breadcrumbs"
+	"menu title"
+	"menu content"
+	". content";
+	grid-template-rows: auto auto auto 1fr;
+	gap: 0 20px;
+}
+
+.content{
+	grid-area: content;
 }
 
 .breadcrumbs {
@@ -19,7 +21,7 @@
 }
 
 .title {
-	margin-top: 20px;
+	margin-top: 30px;
 	grid-area: title;
 }
 
@@ -29,21 +31,26 @@
 }
 
 .menu {
+	margin-top: 30px;
 	grid-area: menu;
 }
 
 .submenu {
-	margin-top: 10px;
-	grid-area: submenu;
+	margin-top: 20px;
+	/* grid-area: submenu; */
+}
+
+.sort {
+	margin-top: 30px;
 }
 
 .products{
-	margin-top: 20px;
-	grid-area: products;
+	margin-top: 30px;
+	/* grid-area: products; */
 }
 
 .description {
 	margin-top: 30px;
-	grid-area: description;
+	/* grid-area: description; */
 }
 

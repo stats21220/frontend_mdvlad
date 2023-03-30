@@ -14,21 +14,21 @@ export const Breadcrumbs = ({ page, className }: IBredcrumbs) => {
         </div>
         <div>
           {page.first && (
-            <Link href={`/page/${page.first.alias}`}>
+            <Link href={`/${page.first.alias}`}>
               <span>{page.first.level}</span>
             </Link>
           )}
         </div>
         {page.second && (
           <div>
-            <Link href={`/page/${page.second.alias}`}>
+            <Link href={`/${page.second.alias}`}>
               <span>{page.second.level}</span>
             </Link>
           </div>
         )}
         {page.third && (
           <div>
-            <Link href={`/page/${page.third.alias}`}>
+            <Link href={`/${page.third.alias}`}>
               <span>{page.third.level}</span>
             </Link>
           </div>

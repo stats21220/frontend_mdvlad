@@ -1,0 +1,56 @@
+.home {
+	background: var(--grey-light);
+}
+
+
+.slider {
+	/* height: 494px; */
+}
+
+.title {
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+.subtitle {
+	margin-top: 30px;
+	font-weight: normal;
+	text-align: center;
+}
+
+.advanteges_wrapper {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	justify-content: center;
+	gap: 50px;
+}
+
+.advanteges_item {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+
+.title {
+	text-align: center;
+	/* margin-top: 30px; */
+}
+
+.article_wrapper {
+	/* background: var(--white); */
+}
+
+.products {
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	justify-content: center;
+	gap: 20px;
+}
+
+.product {
+	background-color: burlywood;
+	height: 200px;
+	width: 300px;
+}

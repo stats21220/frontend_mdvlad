@@ -1,8 +1,8 @@
-import { PtagProps, SortEnum } from "./sort.props";
+import { SortProps, SortEnum } from "./sort.props";
 import cn from "classnames";
 import styles from "./sort.module.css";
 
-export const Sort = ({ sort, setSort, className, ...props }: PtagProps) => {
+export const Sort = ({ sort, setSort, className, ...props }: SortProps) => {
   return (
     <div className={cn(styles.sort, className)} {...props}>
       <span
@@ -19,7 +19,7 @@ export const Sort = ({ sort, setSort, className, ...props }: PtagProps) => {
           [styles.active]: sort === SortEnum.Count,
         })}
       >
-        по цене
+        по количевству
       </span>
     </div>
   );

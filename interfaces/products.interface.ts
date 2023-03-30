@@ -27,7 +27,7 @@ export interface ProductCharacteeristicsDto {
 
 /////////////////////
 export interface ProductModel {
-	_id: string
+	_id: string;
 	productId: number;
 	image: string;
 	title: string;

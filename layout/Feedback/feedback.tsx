@@ -1,5 +1,7 @@
 import { Button, Htag, Input, Ptag } from "@/components";
 import { Textarea } from "@/components/Textarea/textarea";
+import { API } from "@/helpers/api";
+import axios from "axios";
 import cn from "classnames";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -8,14 +10,24 @@ import styles from "./feedback.module.css";
 import { FeedbackProps } from "./feedback.props";
 
 export const Feedback = ({ className }: FeedbackProps) => {
+  const EMAIL_REGEXP =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   const {
     register, //для регистрации формы
     // control, // для регистрации контролируемых управляемых форм
     handleSubmit,
+    formState: { errors },
   } = useForm<IFeedbackForm>();
 
-  const onSubmit = (data: IFeedbackForm) => {
-    console.log(data);
+  const onSubmit = async (formData: IFeedbackForm) => {
+    console.log(formData);
+
+    try {
+      const { data } = await axios.post(API.feedback.create, formData);
+      console.log(data, "a");
+    } catch {
+      console.log("hz");
+    }
   };
 
   return (
@@ -34,14 +46,36 @@ export const Feedback = ({ className }: FeedbackProps) => {
           className={styles.form}
         >
           <div className={styles.user}>
-            <div className={styles.input}>
-              <Input {...register("name")} placeholder="Ваше имя"></Input>
-            </div>
-            <div className={styles.input}>
-              <Input {...register("phone")} placeholder="Ваш телефон"></Input>
-            </div>
-            <div className={styles.input}>
-              <Input {...register("email")} placeholder="Ваш E-mail"></Input>
+            <div className={styles.inputWrapper}>
+              <Input
+                {...register("name", {
+                  required: { value: true, message: "Заполните имя" },
+                })}
+                error={errors && errors.name}
+                className={styles.input}
+                placeholder="Ваше имя"
+              ></Input>
+              <Input
+                {...register("phone", {
+                  required: { value: true, message: "Введите номер телефона" },
+                })}
+                error={errors && errors.phone}
+                className={styles.input}
+                type="tel"
+                {...register("phone")}
+                placeholder="Ваш телефон"
+              ></Input>
+              <Input
+                {...register("email", {
+                  pattern: EMAIL_REGEXP,
+                  required: { value: true, message: "Введите email" },
+                })}
+                error={errors && errors.email}
+                className={styles.input}
+                type="email"
+                {...register("email")}
+                placeholder="Ваш E-mail"
+              ></Input>
             </div>
             <Ptag className={styles.descr} white>
               Отправляя сообщение нам,
@@ -60,9 +94,11 @@ export const Feedback = ({ className }: FeedbackProps) => {
               />
             </div>
             <Button className={styles.button}>Отправить</Button>
-            <span className={styles.success}>
-              форма обратной связи отправлена
-            </span>
+            {/* <div>
+              <span className={styles.success}>
+                форма обратной связи отправлена
+              </span>
+            </div> */}
           </div>
         </form>
       </div>

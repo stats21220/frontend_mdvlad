@@ -5,6 +5,7 @@ import IVisa from "./visa.svg";
 import IMir from "./mir.svg";
 import IJcb from "./jcb.svg";
 import cn from "classnames";
+import { Carousel } from "../slider/slider";
 
 export const PaymentAndDelivery = () => {
   return (

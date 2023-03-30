@@ -19,7 +19,6 @@ a {
 * {
 	box-sizing: border-box;
 }
-
 :root {
 	--primary: #0075BD;
 	/* --primary: black; */
@@ -41,3 +40,4 @@ a {
 	--blue: #72C7FB;
 	--blue-light: #E2F4FF;
 }
+

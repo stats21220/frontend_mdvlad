@@ -1,22 +1,23 @@
 import { MenuModel } from "@/interfaces/menu.interface";
 import { createContext, ReactNode, useState } from "react";
-import { FirstMenuAlias } from "../helpers/helpers";
 
 export interface IAppContext {
   menu: MenuModel[];
-  firstCategory: FirstMenuAlias;
-  secondCategory?: string;
+  firstCategory: string;
+  secondCategory: string;
   setMenu?: (newMenu: MenuModel[]) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
   menu: [],
   firstCategory: "pilomateriali",
+  secondCategory: "",
 });
 
 export const AppContextProvider = ({
   menu,
   firstCategory: firstMenu,
+  secondCategory,
   children,
 }: IAppContext & {
   children: ReactNode;
@@ -26,8 +27,6 @@ export const AppContextProvider = ({
   const setMenu = (newMenu: MenuModel[]) => {
     setMenuState(newMenu);
   };
-
-  const secondCategory = undefined;
 
   return (
     <AppContext.Provider

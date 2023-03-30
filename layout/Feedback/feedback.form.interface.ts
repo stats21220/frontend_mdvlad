@@ -2,5 +2,6 @@ export interface IFeedbackForm {
 	name: string;
 	phone: string;
 	email: string;
-	description: string
+	description: string;
+	userId?: number;
 }

@@ -1,88 +1,35 @@
+import { API } from "@/helpers/api";
+import { IHomeCategory } from "@/interfaces/menu.interface";
 import { WithLayout } from "@/layout/layout";
-// import { GetStaticProps } from "next";
-import { useState } from "react";
-import { Button, Htag, Ptag, Rating, Tag } from "../components/index";
-// import axios from "axios";
-// import { IMenuLevelItem, MenuModel } from "@/interfaces/menu.interface";
+import { HomeComponent } from "@/page-components/Home-component/home-component";
+import { IHomeProps } from "@/page-components/Home-component/home-component.props";
+import axios from "axios";
+import { GetStaticProps } from "next";
 
-function Home(): JSX.Element {
-  //   {
-  //   menu,
-  //   firstLevelMenu,
-  //   firstCategoryMenu,
-  // }: HomeProps
-  const [rating, setRating] = useState<number>(4);
-
-  return (
-    <>
-      <Htag color={"primary"} tag={"h1"}>
-        hz
-      </Htag>
-      <Htag color={"black"} tag={"h2"}>
-        hz
-      </Htag>
-      <Htag color={"white"} tag={"h3"}>
-        hz
-      </Htag>
-      <Button color={"primary"}>primary</Button>
-      <Button color={"primary"} arrow="right">
-        primary
-      </Button>
-      <Button color={"green"} arrow="right">
-        green
-      </Button>
-      <Button color={"orange"} arrow="down">
-        orange
-      </Button>
-      <Ptag size="s">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo,
-        repellendus ratione ipsa, quidem, aliquam ipsam et amet officia soluta
-        expedita tempora obcaecati recusandae. Nostrum odit hic ex vitae
-        aliquam!
-      </Ptag>
-      <Ptag>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo,
-        repellendus ratione ipsa, quidem, aliquam ipsam et amet officia soluta
-        expedita tempora obcaecati recusandae. Nostrum odit hic ex vitae
-        aliquam!
-      </Ptag>
-      <Ptag size="l">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo,
-        repellendus ratione ipsa, quidem, aliquam ipsam et amet officia soluta
-        expedita tempora obcaecati recusandae. Nostrum odit hic ex vitae
-        aliquam!
-      </Ptag>
-      <Tag href="/" size="s">
-        tag
-      </Tag>
-      <Tag href="/" color="green">
-        tag
-      </Tag>
-      <Tag href="/" color="orange">
-        tag
-      </Tag>
-      <Rating rating={3}></Rating>
-      <Rating rating={rating} setRating={setRating} isEditable></Rating>
-    </>
-  );
+function Home({ menu }: HomeProps): JSX.Element {
+  return <HomeComponent menu={menu} />;
 }
-
 export default WithLayout(Home);
 
-// export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  try {
+    const pilomateriali = "pilomateriali";
+    const { data: menu } = await axios.get<IHomeCategory[]>(
+      `${API.pageProduct.getMenu}/${pilomateriali}`
+    );
 
-//   const { data: menu } = await axios.post<MenuModel[]>(
-//     process.env.NEXT_PUBLIC_DOMAIN + "/api/page-products/find"
-//   );
-//   return {
-//     props: {
-//       firstMenu,
-//       secondMenu,
-//     },
-//   };
-// };
+    return {
+      props: {
+        menu,
+      },
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
+};
 
-// interface HomeProps extends Record<string, unknown> {
-//   firstMenu: IMenuLevelItem[]
-//   secondMenu: IMenuLevelItem[]
-// }
+interface HomeProps extends Record<string, unknown> {
+  menu: IHomeCategory[];
+}

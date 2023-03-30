@@ -1,19 +1,21 @@
-import { LevelPage } from "./page.products";
 
 export interface IMenuLevelItem {
+		sortId: number;
+		title: string;
+		alias: string;
+		parentAlias: string;
+}
+
+export interface IHomeCategory {
+	_id: string;
 	title: string;
 	sortId: number;
 	alias: string;
-	categories: LevelPage;
-	firstLevel: string;
-	secondlLevel?: string;
-	thirdLevel?: string;
-	fifthLevel?: string;
+	pageId: number;
 }
 
 export interface MenuModel {
-	_id: string;
-	isOpened?: boolean;
-	firstLevel: string;
-	pages: IMenuLevelItem[];
+		_id: string;
+		isOpened?: boolean;
+		pages: IMenuLevelItem[]
 }
