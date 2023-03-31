@@ -3,20 +3,20 @@ import { createContext, ReactNode, useState } from "react";
 
 export interface IAppContext {
   menu: MenuModel[];
-  firstCategory: string;
-  secondCategory: string;
+  firstCategory: number;
+  secondCategory: number;
   setMenu?: (newMenu: MenuModel[]) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
   menu: [],
-  firstCategory: "pilomateriali",
-  secondCategory: "",
+  firstCategory: 0,
+  secondCategory: 0,
 });
 
 export const AppContextProvider = ({
   menu,
-  firstCategory: firstMenu,
+  firstCategory,
   secondCategory,
   children,
 }: IAppContext & {
@@ -32,7 +32,7 @@ export const AppContextProvider = ({
     <AppContext.Provider
       value={{
         menu: menuState,
-        firstCategory: firstMenu,
+        firstCategory,
         secondCategory,
         setMenu,
       }}

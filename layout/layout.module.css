@@ -7,7 +7,7 @@
 	grid-template-areas: 
 		"nav nav nav"
 		"header header header"
-		". body ."
+		"body body body"
 		"feedback feedback feedback"
 		"subscribe subscribe subscribe"
 		"footer footer footer"
@@ -25,6 +25,7 @@
 .body {
 	grid-area: body;
 	margin-bottom: 30px;
+	background: var(--grey)
 }
 
 .feedback {

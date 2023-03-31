@@ -14,11 +14,11 @@ export const Menu = ({ className }: IMenu) => {
   // const router = useRouter();
   // const route = router.asPath.split("/")[1];
 
-  const opened = (alias: string) => {
+  const opened = (id: number) => {
     const newMenu =
       menu &&
       menu.map((m) => {
-        if (m._id === alias) {
+        if ((m._id === id && m.isOpened === undefined) || false) {
           m.isOpened = !m.isOpened;
         }
         return m;
@@ -31,7 +31,7 @@ export const Menu = ({ className }: IMenu) => {
   }, [firstCategory]);
 
   const buildFirstLevelMenu = () => {
-    const firstMenu = menu && menu.find((m) => m._id === "/");
+    const firstMenu = menu && menu.find((m) => m._id === 0);
     return (
       <>
         {firstMenu &&
@@ -40,17 +40,18 @@ export const Menu = ({ className }: IMenu) => {
               <div key={f.title}>
                 <div
                   className={cn(styles.firstCategoryItem, {
-                    [styles.firstCategoryItemActive]: firstCategory === f.alias,
+                    [styles.firstCategoryItemActive]:
+                      firstCategory === f.pageId,
                   })}
                 >
-                  <Link href={`/${f.alias}`} scroll={false}>
+                  <Link href={`/catalog/${f.alias}/${f.pageId}`} scroll={false}>
                     <div className={styles.link}>
                       <span>{f.title}</span>
                     </div>
                   </Link>
                   <div
                     className={cn(styles.icon)}
-                    onClick={() => opened(f.alias)}
+                    onClick={() => opened(f.pageId)}
                   >
                     <IArrow
                       className={cn({
@@ -59,7 +60,7 @@ export const Menu = ({ className }: IMenu) => {
                     />
                   </div>
                 </div>
-                {buildSecondLevelMenu(f.alias)}
+                {buildSecondLevelMenu(f.pageId)}
               </div>
             );
           })}
@@ -67,9 +68,9 @@ export const Menu = ({ className }: IMenu) => {
     );
   };
 
-  const buildSecondLevelMenu = (alias: string) => {
+  const buildSecondLevelMenu = (pageId: number) => {
     return menu.map((m) => {
-      if (m._id === alias) {
+      if (m._id === pageId) {
         return (
           <div
             key={m._id}
@@ -78,11 +79,15 @@ export const Menu = ({ className }: IMenu) => {
             })}
           >
             {m.pages.map((s) => (
-              <Link key={s.title} href={`/${s.alias}`} scroll={false}>
+              <Link
+                key={s.title}
+                href={`/catalog/${s.alias}/${s.pageId}`}
+                scroll={false}
+              >
                 <div
                   className={cn(styles.secondCategoryItem, {
                     [styles.secondCategoryItemActive]:
-                      secondCategory === s.alias,
+                      secondCategory === s.pageId,
                   })}
                 >
                   <span>{s.title}</span>

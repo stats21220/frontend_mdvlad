@@ -20,9 +20,10 @@ a {
 	box-sizing: border-box;
 }
 :root {
-	--primary: #0075BD;
-	/* --primary: black; */
-	--primary-hover: #0b679f;
+	/* --primary: #0075BD; */
+	--primary: #000;
+	/* --primary-hover: #0b679f; */
+	--primary-hover: #e29b22;
 	--primary-light: #337AB7;
 	--black: #333;
 	--white: #FFF;

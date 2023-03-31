@@ -2,7 +2,7 @@ import { HeaderProps } from "./header.props";
 import styles from "./header.module.css";
 import ILogo from "./logo.svg";
 import Link from "next/link";
-import { Input, Ptag, Search } from "../../components";
+import { Ptag, Search } from "../../components";
 import IPhone from "./phone.svg";
 import ISale from "./sale.svg";
 import cn from "classnames";
@@ -10,8 +10,21 @@ import IMenu from "./menu.svg";
 import IBasket from "./basket.svg";
 import IHeart from "./heart.svg";
 import IRefresch from "./refresh.svg";
+import { AppContext } from "@/context/app.context";
+import { useContext } from "react";
+import { primaryMenuDefault } from "@/helpers/helpers";
+import { useRouter } from "next/router";
 
 export const Header = ({ className, ...props }: HeaderProps) => {
+  const router = useRouter();
+  const { menu, firstCategory, setMenu } = useContext(AppContext);
+  let PrimaryMenu = menu && menu.find((m) => m._id === 0);
+
+  if (!PrimaryMenu) {
+    PrimaryMenu = primaryMenuDefault;
+  }
+
+  // if (PrimaryMenu)
   return (
     <header className={cn(styles.header, className)} {...props}>
       <div className={styles.block_1}>
@@ -54,28 +67,25 @@ export const Header = ({ className, ...props }: HeaderProps) => {
       </div>
       <div className={styles.block_2}>
         <div className={styles.block_2_item}>
-          <Link href={"/pilomateriali"}>
-            <div className={styles.menu_catalog}>
-              <IMenu />
-              <span>Весь каталог</span>
-            </div>
-          </Link>
-          <div className={styles.menu_item}>
-            <span>Программа лояльности</span>
-          </div>
-          <div className={styles.menu_item}>
-            <span>Услуги</span>
-          </div>
-          <div className={styles.menu_item}>
-            <span>Оплата и доставка</span>
-          </div>
-          <div className={styles.menu_item}>
-            <span>Новости и акции</span>
-          </div>
-          <div className={styles.menu_sale}>
+          {PrimaryMenu?.pages.map((m) => (
+            <Link
+              key={m.pageId}
+              className={cn(styles.menu_catalog, {
+                [styles.menu_catalog_active]: m.pageId === firstCategory,
+              })}
+              href={`/catalog/${m.alias}/${m.pageId}`}
+            >
+              <div>
+                <div>
+                  <span>{m.title}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+          <Link className={styles.menu_sale} href={""}>
             <ISale />
-            <span>Распрадажа</span>
-          </div>
+            <span>РАСПРАДАЖА</span>
+          </Link>
         </div>
       </div>
     </header>

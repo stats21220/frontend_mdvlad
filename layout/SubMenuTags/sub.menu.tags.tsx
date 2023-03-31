@@ -12,16 +12,19 @@ export const SubMenuTags = ({ parent, className, ...props }: ISubMenu) => {
 
   const subMenu = () => {
     const currentTags =
-      menu && menu.find((m) => m._id === router.asPath.split("/")[1]);
+      menu && menu.find((m) => m._id === +router.asPath.split("/")[3]);
 
     return (
       parent && (
         <div className={cn(styles.subMenu, className)} {...props}>
-          {parent === "/" ? (
+          {parent.pageId === 0 ? (
             <></>
           ) : (
             <div>
-              <Tag className={styles.back} href={`/${parent}`}>
+              <Tag
+                className={styles.back}
+                href={`/catalog/${parent.alias}/${parent.pageId}`}
+              >
                 назад
               </Tag>
             </div>
@@ -30,7 +33,10 @@ export const SubMenuTags = ({ parent, className, ...props }: ISubMenu) => {
             currentTags.pages.map((tags) => {
               return (
                 <div className={styles.tag} key={tags.alias}>
-                  <Tag color="orange" href={`/${tags.alias}`}>
+                  <Tag
+                    color="orange"
+                    href={`/catalog/${tags.alias}/${tags.pageId}`}
+                  >
                     {tags.title}
                   </Tag>
                 </div>

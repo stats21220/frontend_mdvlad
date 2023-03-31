@@ -6,7 +6,7 @@ import styles from "./Supply.module.css";
 
 export const Supply = () => {
   return (
-    <div>
+    <div className={styles.supply}>
       <Htag className={styles.title} tag="h2" size="m" color="black">
         Поставщикам
       </Htag>

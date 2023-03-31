@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const Lawyer = ({ className, ...props }: ILawyer) => {
   return (
-    <section className={cn(className)} {...props}>
+    <section className={cn(styles.lawyer, className)} {...props}>
       <Htag className={styles.title} color="black" size="m" tag="h2">
         Работа с юридическими лицами
       </Htag>

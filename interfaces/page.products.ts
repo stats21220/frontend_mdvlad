@@ -2,6 +2,7 @@
 export interface PageLevelItem {
 	level: string;
 	alias: string;
+	pageId: number;
 	_id: string;
 }
 
@@ -24,6 +25,6 @@ export interface PageProductsModel {
 	description: string;
 	categories: LevelPage;
 	aliases: string[]
-	parentAlias?: string;
+	parentId?: number;
 	_id: string;
 }

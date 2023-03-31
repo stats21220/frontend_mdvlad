@@ -1,8 +1,9 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: minmax(320px, 1250px);
+  grid-template-columns: minmax(320px, 1600px);
   margin: auto;
+  justify-content: center;
   gap: 0 30px;
 }
 

@@ -3,7 +3,8 @@ export interface IMenuLevelItem {
 		sortId: number;
 		title: string;
 		alias: string;
-		parentAlias: string;
+		pageId: number;
+		parentId: number;
 }
 
 export interface IHomeCategory {
@@ -15,7 +16,7 @@ export interface IHomeCategory {
 }
 
 export interface MenuModel {
-		_id: string;
+		_id: number;
 		isOpened?: boolean;
 		pages: IMenuLevelItem[]
 }

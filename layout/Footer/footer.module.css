@@ -1,19 +1,21 @@
 
 .footer {
-	display: grid;
-	grid-template-columns: minmax(320px, 1600px);
-	margin: auto;
-	justify-items: center;
+	/* display: grid; */
+	/* grid-template-columns: minmax(320px, 1600px); */
+	/* margin: auto; */
+	/* justify-items: center; */
 }
 
 .wrapper {
 		display: grid;
 		width: 100%;
-		grid-template-columns: auto 240px 250px 300px 1fr auto;
+		grid-template-columns: auto 240px 250px 300px minmax(320px, 500px) auto;
+		background: var(--grey);
 		grid-template-areas:
 			". about_company catalog contacts map ."
 			". footer_bottom footer_bottom footer_bottom map ."
 		;
+		justify-content: center;
 }
 
 .title {

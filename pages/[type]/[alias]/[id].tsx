@@ -12,14 +12,14 @@ import { PageProductComponent } from "@/page-components/page-product-component/p
 function PageProducts({
   products,
   page,
-  product,
-}: PageProductsProps): JSX.Element {
+}: // product,
+PageProductsProps): JSX.Element {
   return (
     <>
       <PageProductsComponent
         page={page}
         products={products}
-        product={product}
+        // product={product}
       />
     </>
   );
@@ -28,16 +28,18 @@ function PageProducts({
 export default WithLayoutPageProductsComponent(PageProducts);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: aliases } = await axios.get<string[]>(API.pageProduct.getPaths);
-  const { data: aliasesProducts } = await axios.get<{ alias: string }[]>(
-    API.product.findProductsPaths
-  );
+  const { data: catalog } = await axios.get<
+    { alias: string; pageId: number }[]
+  >(API.pageProduct.getPaths);
+  const { data: product } = await axios.get<
+    { alias: string; productId: number }[]
+  >(API.product.findProductsPaths);
+
+  const catalogPaths = catalog.map((c) => `/catalog/${c.alias}/${c.pageId}`);
+  const producPaths = product.map((p) => `/product/${p.alias}/${p.productId}`);
 
   return {
-    paths: [
-      ...aliases.map((a) => "/" + a),
-      ...aliasesProducts.map((a) => "/" + a.alias),
-    ],
+    paths: [...catalogPaths, ...producPaths],
     fallback: true,
   };
 };
@@ -52,29 +54,25 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
   }
 
   try {
-    let firstCategory = "";
-    let secondCategory = "";
-
     const { data: page } = await axios.get<PageProductsModel>(
-      API.pageProduct.getPage + params.page
+      API.pageProduct.getPage + params.id
     );
 
-    if (page._id !== "0") {
-      firstCategory = page.categories.first.alias;
-      secondCategory =
-        (page.categories.second?.alias && page.categories.second.alias) || "";
-    }
+    const firstCategory = page.categories.first.pageId;
+    const secondCategory =
+      (page.categories.second?.alias && page.categories.second.pageId) ||
+      firstCategory;
 
-    const { data: product } = await axios.get<ProductModel>(
-      API.product.getProduct + params.page
-    );
+    // const { data: product } = await axios.get<ProductModel>(
+    //   API.product.getProduct + params.page
+    // );
 
-    if (product._id !== "0") {
-      firstCategory = product.categories.first.alias;
-      secondCategory =
-        (product.categories.second?.alias && product.categories.second.alias) ||
-        "";
-    }
+    // if (product._id !== "0") {
+    //   firstCategory = product.categories.first.alias;
+    //   secondCategory =
+    //     (product.categories.second?.alias && product.categories.second.alias) ||
+    //     "";
+    // }
     const { data: menu } = await axios.post<MenuModel[]>(
       API.pageProduct.getMenu
     );
@@ -84,7 +82,7 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
     const { data: products } = await axios.post<ProductsModel[]>(
       API.product.findProducts,
       {
-        alias: [params.page],
+        pageId: [params.id],
         // limit: 20,
       }
     );
@@ -96,7 +94,7 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
         secondCategory,
         page,
         products,
-        product,
+        // product,
       },
       revalidate: 10,
     };
@@ -109,9 +107,9 @@ export const getStaticProps: GetStaticProps<PageProductsProps> = async ({
 
 interface PageProductsProps extends Record<string, unknown> {
   menu: MenuModel[];
-  firstCategory: string;
-  secondCategory: string;
+  firstCategory: number;
+  secondCategory: number;
   page: PageProductsModel;
   products: ProductsModel[];
-  product: ProductModel;
+  // product: ProductModel;
 }
