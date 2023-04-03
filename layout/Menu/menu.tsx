@@ -80,7 +80,7 @@ export const Menu = ({ className }: IMenu) => {
           >
             {m.pages.map((s) => (
               <Link
-                key={s.title}
+                key={s.pageId}
                 href={`/catalog/${s.alias}/${s.pageId}`}
                 scroll={false}
               >

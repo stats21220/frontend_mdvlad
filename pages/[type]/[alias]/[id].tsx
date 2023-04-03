@@ -8,6 +8,7 @@ import { ProductModel, ProductsModel } from "@/interfaces/products.interface";
 import { PageProductsComponent } from "@/page-components";
 import { API } from "@/helpers/api";
 import { PageProductComponent } from "@/page-components/page-product-component/page.product.component";
+import Head from "next/head";
 
 function PageProducts({
   products,
@@ -16,6 +17,9 @@ function PageProducts({
 PageProductsProps): JSX.Element {
   return (
     <>
+      <Head>
+        <title>{page && page.title}</title>
+      </Head>
       <PageProductsComponent
         page={page}
         products={products}
